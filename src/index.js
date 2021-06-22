@@ -5,15 +5,21 @@ import 'tachyons';
 import SignUpForm from './components/SignUpForm';
 import SignInForm from './components/SignInForm';
 import Navbar from './components/NavBar';
+import EditPost from './components/EditPost';
+import MakePost from './components/MakePost';
+import PostCard from './components/PostCard';
 // import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-// const person = {adminIsSignedIn:true}
+const user = {isAdmin:true}
 
 ReactDOM.render(
   <React.StrictMode>
     <Navbar />
+    <MakePost />
+    <EditPost />
     <SignInForm />
+    <PostCard user = {user}/>
   </React.StrictMode>,
   document.getElementById('root')
 );
