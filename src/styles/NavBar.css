@@ -1,0 +1,38 @@
+.navbar-container{
+	display: flex;
+	justify-content: space-between;
+	/*background-color: ghostwhite;*/
+	padding: 30px;
+	background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
+}
+
+.nb-btn{
+	/*height: 40px;*/
+	padding: 5px 0px;
+	width: 90px;
+	border-radius: 5px;
+	font-family: calibri;
+	font-size: 20px;
+	font-weight: bold;
+	color: white;
+	border-style: none;
+	background-color: #757980;
+}
+
+.nb-btn:hover{
+	transform: scale(1.1);
+	background-color: #9b9ea3;
+	
+}
+
+.nb-label{
+	font-size: 25px;
+	font-family: calibri;
+	font-weight: bold;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.nb-label:hover{
+	color: grey;
+}
