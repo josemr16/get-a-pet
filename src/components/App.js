@@ -11,7 +11,7 @@ class App extends Component{
 		super(props)
 		this.state = {
 			posts:[1,2,7],
-			reserved:[4],
+			reserved:[1],
 			route:'home',
 			user: {
 				name:'',
@@ -19,6 +19,11 @@ class App extends Component{
 				isAdmin:''
 			}
 		}
+	}
+
+	loadUser=(user)=>{
+		console.log('user');
+
 	}
 
 	changeRoute =(route)=>{
