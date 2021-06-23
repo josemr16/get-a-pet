@@ -23,8 +23,37 @@ class SignInForm extends React.Component {
 
 		let { email, password} = this.state
 
-		console.log( email, password);
-		console.log('signinform');
+		if(!email.includes('@')){
+			alert('enter a valid email')
+		}
+
+		if(password.length < 1){
+			alert('enter your password')
+		}
+		else{
+
+			fetch(`http://localhost:4000/user/${email}`)
+			.then(res => res.json())
+			.then(user=> {
+				console.log(user);
+				if(user.hash === password){
+					this.props.loadUser({
+						name:user.name,
+						email:user.email,
+						isAdmin:user.isadmin
+					})
+					this.props.changeRoute('allposts')
+				}
+				else{
+					alert('Your password is wrong');
+				}
+			})
+			.catch(err => alert('your credentials were not found in the database'))
+			
+		}
+
+		// console.log( email, password);
+		// console.log('signinform');
 		// this.props.onRouteChange('home');
 
 

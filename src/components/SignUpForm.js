@@ -34,9 +34,44 @@ class SignUpForm extends React.Component {
 	
 	onClickSubmit = () => {
 
+
 		let { name, email, password, confirmPassword } = this.state
 
-		console.log( name, email, password, confirmPassword );
+		let objToSend = {
+			name:name,
+			email:email,
+			hash:password,
+			isAdmin:0
+		}
+
+		if(name.length < 2){
+			alert('Name should have at least 2 characters')
+		}
+
+		if(!email.includes('@')){
+			alert('enter a correct email')
+		}
+		else{
+
+			fetch('http://localhost:4000/addUser',{
+				method:'post',
+				headers: {'Content-Type':'application/json'},
+				body:JSON.stringify(objToSend)
+			})
+			.then(res => res.json())
+			.then(user=>{
+				this.props.loadUser({
+					name:user.name,
+					email:user.email,
+					isAdmin:user.isadmin
+				})
+				this.props.changeRoute('allposts')
+			})
+
+
+
+		}
+		// console.log( name, email, password, confirmPassword );
 		console.log('hello');
 		// this.props.onRouteChange('home');
 	}

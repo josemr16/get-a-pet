@@ -11,10 +11,10 @@ app.use(express.json()); //req.body
 
 const petPool = new Pool(
     {
-        user: 'postgres',
+        user: 'joserodriguez',
         host: 'localhost',
         database: 'getpet', //swap databases by changing the name
-        password: '1Gunther!', // use your own postgres password here
+        password: '', // use your own postgres password here
         port:5432
     }
 );
@@ -35,6 +35,7 @@ app.post("/addUser", async(req, res) => { //change /todos route to "/somethingMo
         console.log(error.message);
     }
 });
+
 //get all todos (get everything from database)
 
 app.get("/allUsers", async(req, res) => { //change /todos route to "/somethingMoreMeaningful"
@@ -55,7 +56,7 @@ app.get("/user/:email", async(req, res) => { //change /todos route to "/somethin
         const todo = await petPool.query("SELECT * FROM userlogin WHERE email = $1", [email]) 
         res.json(todo.rows[0]);
     } catch (error) {
-        console.log(error.message);
+        res.status(404);
     }
 });
 //update a todo

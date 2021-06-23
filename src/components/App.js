@@ -22,8 +22,12 @@ class App extends Component{
 	}
 
 	loadUser=(user)=>{
-		console.log('user');
-
+		this.setState({user:{
+			name:user.name,
+			email:user.email,
+			isAdmin:user.isAdmin
+		}})
+		console.log(this.state.user)
 	}
 
 	changeRoute =(route)=>{
@@ -65,14 +69,19 @@ class App extends Component{
 			case 'signin':
 			component =(
 				<div>
-					<SignInForm />
+					<SignInForm 
+					loadUser = {this.loadUser}
+					changeRoute={this.changeRoute}
+					/>
 				</div>
 			);
 			break
 			case 'signup':
 			component = (
 				<div>
-					<SignUpForm />
+					<SignUpForm 
+					loadUser = {this.loadUser}
+					changeRoute={this.changeRoute} />
 				</div>
 			);
 			break
