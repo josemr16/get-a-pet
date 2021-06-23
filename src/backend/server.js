@@ -126,6 +126,24 @@ app.get("/pet/:id", async(req, res) => { //change /todos route to "/somethingMor
         console.log(error.message);
     }
 });
+//------------------
+
+
+//get a todo (get one element from database)
+app.get("/pet/:reservation_id", async(req, res) => { //change /todos route to "/somethingMoreMeaningful"
+    try {
+        const {reservation_id} = req.params;
+        /*postgres command to get one element from database*/
+        const todo = await petPool.query("SELECT * FROM petinfo WHERE reservation_id = $1", [reservation_id]) 
+        res.json(todo.rows[0]);
+    } catch (error) {
+        console.log(error.message);
+    }
+});
+
+
+//-------------------
+
 //update a todo
 app.put("/updatePet/:id", async(req, res) => { //change /todos route to "/somethingMoreMeaningful"
     try {
