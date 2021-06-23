@@ -1,0 +1,16 @@
+.pcl-container{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.no-pets{
+	font-family: calibri;
+	font-weight: normal;
+}
+
+.no-pets-img{
+	display: block;
+	margin: auto;
+}
+

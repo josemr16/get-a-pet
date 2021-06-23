@@ -1,22 +1,44 @@
+import React,{Component} from 'react';
 import '../styles/MakeEditPost.css';
 
-function MakePost (props){
-	// body...
-	return(
-		
-		<div>
-			<div className='shadow-5 form-container'>
-		        <h1 className=''>Make Post</h1>
-		        <h3 className="">Pet Race</h3>
-		        <input id='ep-race'className="nc-input" type="text"></input>
-		        <h3 className="">Pet Image URL</h3>
-		        <input id='ep-url'className="nc-input" type="text"></input>
-		        <h3 className="">Pet Description</h3>
-		        <textarea id='ep-description'className='nc-ta' placeholder='Enter description here'></textarea>
-		        <button onClick = {()=>console.log('click')}className='nc-btn'>Save Changes</button>
-		    </div>
-		</div>
-	);
+class MakePost extends Component{
+	constructor(props){
+		super(props)
+
+		this.state = {
+			breed:'',
+			url:'',
+			description:''
+		}
+	}
+
+	onInputChange =(e)=>{
+		this.setState({[e.target.name]:e.target.value})
+	}
+	onSaveChangesClick =()=>{
+		// make a fetch here 
+		// change route
+		this.props.onSaveChangesClick('allposts')
+	}
+
+
+	render(){
+		return(
+			
+			<div className='mv4'>
+				<div className='shadow-5 form-container'>
+			        <h1 className=''>Make Post</h1>
+			        <h3 className="">Pet Breed</h3>
+			        <input onChange={this.onInputChange}id='mp-breed'className="nc-input" name='breed' type="text"/>
+			        <h3 className="">Pet Image URL</h3>
+			        <input onChange={this.onInputChange} id='mp-url'className="nc-input" name='url' type="text"/>
+			        <h3 className="">Pet Description</h3>
+			        <textarea onChange={this.onInputChange} id='mp-description'className='nc-ta' name='description' placeholder='Enter description here'></textarea>
+			        <button onClick = {this.onSaveChangesClick}className='nc-btn'>Save Changes</button>
+			    </div>
+			</div>
+		);
+	}	
 
 }
 export default MakePost;

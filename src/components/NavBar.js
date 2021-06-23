@@ -1,49 +1,47 @@
 import '../styles/NavBar.css';
 
-function NavBar ({adminIsSignedIn, userIsSignedIn}){
+function NavBar (props){
 	// body...
 	let component;
-	if(adminIsSignedIn){
+	if(props.user.isAdmin === 1){
 		component =(
 			<div className = 'navbar-container'>
 				<div>
-					<span className='nb-label'>Home</span>
+					<span onClick={()=>props.onHomeClick('home')} className='nb-label'>Home</span>
 				</div>
 				<div>
-					<span className='mr4 nb-label'>All Post</span>
-					<span className ='mh2 nb-label'>Make A Post</span>
+					<span onClick={()=>props.onAllPostsClick('allposts')}className='mr4 nb-label'>All Posts</span>
+					<span onClick={()=>props.onMakeAPostClick('makepost')}className ='mh2 nb-label'>Make A Post</span>
 				</div>
 			</div>
 		);
-	} else if(userIsSignedIn){
-
-		component =(
-			<div className = 'navbar-container'>
-				<div>
-					<span className ='nb-label'>Home</span>
-				</div>
-				<div>
-					<span className =' mr4 nb-label'>All Post</span>
-					<span className ='mh2 nb-label'>Reserved</span>
-				</div>
-			</div>
-		);
-
-	}else {
+	} else if(props.user.isAdmin === 0){
 
 		component =(
 			<div className = 'navbar-container'>
 				<div>
-					<span className ='nb-label'>Home</span>
+					<span onClick={()=>props.onHomeClick('home')}  className ='nb-label'>Home</span>
 				</div>
 				<div>
-					<button className='mh2 nb-btn'>Sign In</button>
-					<button className='mh2 nb-btn'>Sign Up</button>
+					<span onClick={()=>props.onAllPostsClick('allposts')} className =' mr4 nb-label'>All Posts</span>
+					<span onClick={()=>props.onReservedClick('reserved')} className ='mh2 nb-label'>Reserved</span>
 				</div>
 			</div>
 		);
 
+	}else{
 
+		component =(
+			<div className = 'navbar-container'>
+				<div>
+					<span onClick={()=>props.onHomeClick('home')}  className ='nb-label'>Home</span>
+				</div>
+				<div>
+					<button onClick={()=>props.onSignInClick('signin')} className='mh2 nb-btn'>Sign In</button>
+					<button onClick={()=>props.onSignUpClick('signup')}className='mh2 nb-btn'>Sign Up</button>
+				</div>
+			</div>
+		);
 	}
 
 	return(
