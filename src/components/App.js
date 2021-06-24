@@ -25,7 +25,7 @@ class App extends Component{
 		fetch('http://localhost:4000/allpets')
 		.then(res => res.json())
 		.then(posts => {
-			console.log(posts)
+			// console.log(posts)
 			this.setState({posts})
 		})
 
@@ -52,27 +52,12 @@ class App extends Component{
 	changeRoute =(route)=>{
 		this.updateState()
 		this.setState({route})
-		// update state here
+
 	}
 
 	handleOnPostCardEditClick=(id)=>{
-		console.log(id)
+		// console.log(id)
 		this.setState({editId:id})
-		// let breed = document.querySelector('#ep-breed');
-		// let image = document.querySelector('#ep-image');
-		// let description = document.querySelector('#ep-description');
-		// // console.log(breed, image, description);
-		
-		// fetch(`http://localhost:4000/pet/${id}`)
-		// .then(res => res.json())
-		// .then(pet =>{
-		// 	console.log(pet)
-		// 	breed.value = pet.breed;
-		// 	image.value = pet.image;
-		// 	description.value = pet.description;
-
-		// })
-
 		this.changeRoute('editpost')
 
 	}

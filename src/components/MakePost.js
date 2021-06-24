@@ -26,12 +26,13 @@ class MakePost extends Component{
 			body:JSON.stringify({
 				breed,
 				image,
-				description
+				description,
+				reservation_id:null
 			})
 		})
 		.then(res => res.json())
 		.then(pet =>{
-			alert('Success! Pet added.')
+			alert('Success!Pet have been added')
 			this.props.onSaveChangesClick('allposts')
 		})
 		.catch(err => alert('Something went wrong :('))
