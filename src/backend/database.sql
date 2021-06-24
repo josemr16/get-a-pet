@@ -19,7 +19,7 @@ CREATE TABLE petinfo(
 );
 
 insert into petinfo(breed,description,image)values('chihuahua', 'description','www.google.com');
-
+alter table petinfo alter column reservation_id set default 0;
 
 -- CREATE TABLE userlogin( 
 --     email VARCHAR(50) PRIMARY KEY NOT NULL,

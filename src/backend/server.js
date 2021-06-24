@@ -96,8 +96,8 @@ app.post("/addPet", async(req, res) => { //change /todos route to "/somethingMor
         const {breed, description, image, reservation_id} = req.body; //info to be into database
         const newTodo = await petPool.query(
             /*postgres command to post an element to database*/
-            "INSERT INTO petinfo (breed, description, image, reservation_id) VALUES($1, $2, $3, $4) RETURNING *", 
-            [breed, description, image, reservation_id]
+            "INSERT INTO petinfo (breed, description, image) VALUES($1, $2, $3) RETURNING *", 
+            [breed, description, image]
         );
         res.json(newTodo.rows[0]);
     } catch (error) {
@@ -131,16 +131,27 @@ app.get("/pet/:id", async(req, res) => { //change /todos route to "/somethingMor
 
 
 //get a todo (get one element from database)
-app.get("/pet/:reservation_id", async(req, res) => { //change /todos route to "/somethingMoreMeaningful"
+app.get("/allpets/reserved/:reservation_id", async(req, res) => { //change /todos route to "/somethingMoreMeaningful"
     try {
         const {reservation_id} = req.params;
         /*postgres command to get one element from database*/
         const todo = await petPool.query("SELECT * FROM petinfo WHERE reservation_id = $1", [reservation_id]) 
-        res.json(todo.rows[0]);
+        res.json(todo.rows);
     } catch (error) {
         console.log(error.message);
     }
 });
+
+app.get('/allpets/notreserved', async(req,res) =>{
+    try{
+        const todo = await petPool.query("SELECT * FROM petinfo WHERE reservation_id IS NULL") 
+        res.json(todo.rows)
+
+    }catch(error) {
+        console.log(error.message)
+    }
+
+})
 
 
 //-------------------
@@ -154,6 +165,22 @@ app.put("/updatePet/:id", async(req, res) => { //change /todos route to "/someth
             /*postgres command to update one element from database*/
             "UPDATE petinfo SET (breed, description, image, reservation_id) = ($1, $2, $3, $4) WHERE id = $5", 
             [breed, description, image, reservation_id, id]
+            );
+            res.json(updateTodo);
+    } catch (error) {
+        console.log(error.message);
+    }
+});
+
+//update a pet reservation_id
+app.put("/updatePet/reservation_id/:id", async(req, res) => { //change /todos route to "/somethingMoreMeaningful"
+    try {
+        const {id} = req.params;
+        const {reservation_id} = req.body;
+        const updateTodo = await petPool.query(
+            /*postgres command to update one element from database*/
+            "UPDATE petinfo SET reservation_id = $1 WHERE id = $2", 
+            [reservation_id, id]
             );
             res.json(updateTodo);
     } catch (error) {

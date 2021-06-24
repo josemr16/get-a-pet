@@ -22,7 +22,7 @@ class App extends Component{
 		}
 	}
 	componentDidMount(){
-		fetch('http://localhost:4000/allpets')
+		fetch('http://localhost:4000/allpets/notreserved')
 		.then(res => res.json())
 		.then(posts => {
 			// console.log(posts)
@@ -31,8 +31,8 @@ class App extends Component{
 
 	}
 
-	updateState=()=>{
-		fetch('http://localhost:4000/allpets')
+	updatePostsState=()=>{
+		fetch('http://localhost:4000/allpets/notreserved')
 		.then(res => res.json())
 		.then(posts => {
 			this.setState({posts})
@@ -40,18 +40,35 @@ class App extends Component{
 
 	}
 
+	updateReservedState=()=>{
+		fetch(`http://localhost:4000/allpets/reserved/${this.state.user.email}`)
+		.then(res => res.json())
+		.then(posts => {
+			this.setState({reserved:posts})
+			console.log('Reserved posts')
+			console.log(this.state.user.email);
+			console.log(posts);
+		})
+
+	}
+
+
 	loadUser=(user)=>{
 		this.setState({user:{
 			name:user.name,
 			email:user.email,
 			isAdmin:user.isAdmin
 		}})
+		this.updateReservedState()
 		console.log(this.state.user)
 	}
 
 	changeRoute =(route)=>{
-		this.updateState()
+		this.updatePostsState()
 		this.setState({route})
+		if(route === 'reserved'){
+			// console.log('route is reserved')
+		}
 
 	}
 
@@ -63,16 +80,63 @@ class App extends Component{
 	}
 
 	handleOnPostCardDeleteClick=(id)=>{
+		fetch(`http://localhost:4000/removePet/${id}`,{
+			method:'delete',
+			headers: {'Content-Type':'application/json'}
+
+		})
+		.then(res => {
+			if(res.status === 200){
+				this.updatePostsState()
+				alert('Pet removed from database.')
+			}
+		})
+		.catch(err => console.log("an error occured "+ err));
+
+
 		console.log(id)
 
 	}
 
 	handleOnPostCardReserveClick=(id)=>{
+		fetch(`http://localhost:4000/updatePet/reservation_id/${id}`,{
+			method:'put',
+			headers:{'Content-Type': 'application/json'},
+			body:JSON.stringify({
+				reservation_id:this.state.user.email
+			})
+		})
+		.then(res=> {
+			console.log(res)
+			if(res.status === 200){
+				this.updatePostsState();
+				this.updateReservedState();
+				alert('Successfully reserved pet for appoinment.')
+			}
+		})
+		.catch(err => console.log('error occured reserving pet '+ err))
 		console.log(id)
 
 	}
 
 	handleOnPostCardRemoveClick=(id)=>{
+		fetch(`http://localhost:4000/updatePet/reservation_id/${id}`,{
+			method:'put',
+			headers:{'Content-Type': 'application/json'},
+			body:JSON.stringify({
+				reservation_id:null
+			})
+		})
+		.then(res=> {
+			console.log(res)
+			if(res.status === 200){
+				this.updatePostsState();
+				this.updateReservedState();
+				alert('Successfully removed reservation.')
+			}
+		})
+		.catch(err => console.log('error occured reserving pet '+ err))
+		console.log(id)
 		console.log(id)
 
 	}
