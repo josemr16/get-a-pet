@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import HomePage from './HomePage';
 import PostCardList from './PostCardList';
 import EditPost from './EditPost';
 import MakePost from './MakePost';
@@ -130,7 +131,7 @@ class App extends Component{
 			default:
 			component=(
 				<div>
-					<h1>Home</h1>
+					<HomePage/>
 				</div>
 			);
 		}
