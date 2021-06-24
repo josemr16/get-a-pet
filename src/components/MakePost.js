@@ -7,7 +7,7 @@ class MakePost extends Component{
 
 		this.state = {
 			breed:'',
-			url:'',
+			image:'',
 			description:''
 		}
 	}
@@ -16,9 +16,28 @@ class MakePost extends Component{
 		this.setState({[e.target.name]:e.target.value})
 	}
 	onSaveChangesClick =()=>{
+
+		let {breed,image,description} = this.state;
+
 		// make a fetch here 
+		fetch('http://localhost:4000/addpet',{
+			method:'post',
+			headers:{'Content-Type':'application/json'},
+			body:JSON.stringify({
+				breed,
+				image,
+				description
+			})
+		})
+		.then(res => res.json())
+		.then(pet =>{
+			alert('Success! Pet added.')
+			this.props.onSaveChangesClick('allposts')
+		})
+		.catch(err => alert('Something went wrong :('))
 		// change route
-		this.props.onSaveChangesClick('allposts')
+
+		
 	}
 
 

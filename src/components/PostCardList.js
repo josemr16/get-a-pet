@@ -19,14 +19,15 @@ function PostCardList (props){
 	
 		component = props.posts.map((post,i) => {
 			return(
-				<div key={i}>
+				<div key={post.id}>
 					<PostCard  
 					user ={props.user} 
 					route={props.route}
-					onEditClick={()=>props.onEditClick(i)}
-					onDeleteClick={()=>props.onDeleteClick(i)}
-					onReserveClick={()=>props.onReserveClick(i)}
-					onRemoveClick={()=>props.onRemoveClick(i)}/>
+					post={post}
+					onEditClick={()=>props.onEditClick(post.id)}
+					onDeleteClick={()=>props.onDeleteClick(post.id)}
+					onReserveClick={()=>props.onReserveClick(post.id)}
+					onRemoveClick={()=>props.onRemoveClick(post.id)}/>
 				</div>
 			);
 		})

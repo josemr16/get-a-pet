@@ -155,7 +155,7 @@ app.put("/updatePet/:id", async(req, res) => { //change /todos route to "/someth
             "UPDATE petinfo SET (breed, description, image, reservation_id) = ($1, $2, $3, $4) WHERE id = $5", 
             [breed, description, image, reservation_id, id]
             );
-            res.json("petinfo was updated!");
+            res.json(updateTodo);
     } catch (error) {
         console.log(error.message);
     }

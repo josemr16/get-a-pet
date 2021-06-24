@@ -10,15 +10,34 @@ class App extends Component{
 	constructor(props){
 		super(props)
 		this.state = {
-			posts:[1,2,7],
-			reserved:[1],
+			posts:[],
+			reserved:[],
 			route:'home',
+			editId:'',
 			user: {
 				name:'',
 				email:'',
 				isAdmin:''
 			}
 		}
+	}
+	componentDidMount(){
+		fetch('http://localhost:4000/allpets')
+		.then(res => res.json())
+		.then(posts => {
+			console.log(posts)
+			this.setState({posts})
+		})
+
+	}
+
+	updateState=()=>{
+		fetch('http://localhost:4000/allpets')
+		.then(res => res.json())
+		.then(posts => {
+			this.setState({posts})
+		})
+
 	}
 
 	loadUser=(user)=>{
@@ -31,13 +50,29 @@ class App extends Component{
 	}
 
 	changeRoute =(route)=>{
-
+		this.updateState()
 		this.setState({route})
 		// update state here
 	}
 
 	handleOnPostCardEditClick=(id)=>{
 		console.log(id)
+		this.setState({editId:id})
+		// let breed = document.querySelector('#ep-breed');
+		// let image = document.querySelector('#ep-image');
+		// let description = document.querySelector('#ep-description');
+		// // console.log(breed, image, description);
+		
+		// fetch(`http://localhost:4000/pet/${id}`)
+		// .then(res => res.json())
+		// .then(pet =>{
+		// 	console.log(pet)
+		// 	breed.value = pet.breed;
+		// 	image.value = pet.image;
+		// 	description.value = pet.description;
+
+		// })
+
 		this.changeRoute('editpost')
 
 	}
@@ -60,6 +95,10 @@ class App extends Component{
 	handleOnEditSaveChangesClick=()=>{
 		// needs to be handle
 		console.log('click');
+	}
+
+	handleOnEditFormSaveChangesClick=()=>{
+
 	}
 
 	render(){
@@ -123,7 +162,8 @@ class App extends Component{
 			component=(
 				<div>
 					<EditPost 
-					onSaveChangesClick={this.handleOnEditSaveChangesClick}/>
+					id={this.state.editId}
+					onSaveChangesClick={this.changeRoute}/>
 				</div>
 			);
 			break

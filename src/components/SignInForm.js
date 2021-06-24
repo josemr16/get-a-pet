@@ -35,7 +35,7 @@ class SignInForm extends React.Component {
 			fetch(`http://localhost:4000/user/${email}`)
 			.then(res => res.json())
 			.then(user=> {
-				console.log(user);
+				// console.log(user);
 				if(user.hash === password){
 					this.props.loadUser({
 						name:user.name,
@@ -51,37 +51,6 @@ class SignInForm extends React.Component {
 			.catch(err => alert('your credentials were not found in the database'))
 			
 		}
-
-		// console.log( email, password);
-		// console.log('signinform');
-		// this.props.onRouteChange('home');
-
-
-
-		// let objToSend = {
-		// 		name: this.state.nameChange,
-		// 		lastname:this.state.lastname,
-		// 		password: this.state.passwordChange,
-		// 		email: this.state.emailChange
-		// }
-
-		// fetch('http://localhost:3000/SignUpForm', {
-		// 	method:'post',
-		// 	headers: {'Content-type': 'application/json'},
-		// 	body: JSON.stringify(objToSend)
-		// })
-		// .then(response => response.json())
-		// .then(user => {
-		//  	if(user.email.length > 0 && 
-		//  		objToSend.password.length > 0 &&
-		//  		user.name.length > 0 &&
-		//  		user.lastname.length > 0){
-		//  		this.props.onRouteChange('mealposts')
-		// 		this.props.isSignInChange()
-		// 		this.props.loadUser(objToSend)
-		//  	}
-		// })
-		// .catch(err => console.log('all fields must be fill'))
 
 	}
 
