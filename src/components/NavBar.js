@@ -21,21 +21,18 @@ function NavBar (props){
 				</div>
 
 				<div>
-					<img 
+					<span 
 					name='allposts'
-					src='https://img.icons8.com/ios/452/activity-feed.png'
-					width='30px'
 					onClick={()=>props.onAllPostsClick('allposts')}
-					className='home-icon mr4 nb-label'/>
+					className='home-icon mr4 nb-label'>ALL POSTS</span>
 
-					<img
+					<span
 					name='makeapost'
-					src='https://cdn2.iconfinder.com/data/icons/lucid-generic/24/new_artboard_file_create_post-512.png' 
-					width='35px'
 					onClick={()=>props.onMakeAPostClick('makepost')}
-					className ='home-icon mh2 nb-label'/>
+					className ='home-icon mh2 nb-label'>NEW POST</span>
 
 					<img 
+					onClick={props.onSignOutClick}
 					name='signout'
 					width='30px'
 					className='home-icon ml5'
@@ -54,24 +51,22 @@ function NavBar (props){
 					onClick={()=>props.onHomeClick('home')}  
 					className ='home-icon nb-label'
 					width='30px'/>
+					<span className='nb-uname'>{`Hello! ${props.name}`}</span>
 				</div>
 				<div>
-					<img 
+					<span 
 					name='allposts'
-					src='https://img.icons8.com/ios/452/activity-feed.png'
-					width='30px'
 					onClick={()=>props.onAllPostsClick('allposts')}
-					className='home-icon mr4 nb-label'/>
+					className='home-icon mr4 nb-label'>ALL POSTS</span>
 
-					<img 
+					<span 
 					name='reserved'
 					onClick={()=>props.onReservedClick('reserved')} 
-					className ='mh2 nb-label reserved-icon'
-					width='30px'
-					src='https://uxwing.com/wp-content/themes/uxwing/download/01-user_interface/lock.png'/>
+					className ='mh2 nb-label reserved-icon'>RESERVED</span>
 
 
 					<img 
+					onClick={props.onSignOutClick}
 					name='signout'
 					width='30px'
 					className='home-icon ml5'

@@ -71,6 +71,19 @@ class App extends Component{
 		}
 
 	}
+	handleOnSignOutClick=()=>{
+		this.setState({
+			posts:[],
+			reserved:[],
+			route:'signin',
+			editId:'',
+			user:{
+				name:'',
+				email:'',
+				isAdmin:''
+			}
+		})
+	}
 
 	handleOnPostCardEditClick=(id)=>{
 		// console.log(id)
@@ -235,7 +248,8 @@ class App extends Component{
 				onAllPostsClick={this.changeRoute}
 				onReservedClick={this.changeRoute}
 				onHomeClick={this.changeRoute}
-				onMakeAPostClick={this.changeRoute}/>
+				onMakeAPostClick={this.changeRoute}
+				onSignOutClick={this.handleOnSignOutClick}/>
 
 				{component}
 			</div>
