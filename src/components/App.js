@@ -229,6 +229,7 @@ class App extends Component{
 			<div>
 				<Navbar 
 				user={this.state.user}
+				name ={this.state.user.name}
 				onSignInClick={this.changeRoute} 
 				onSignUpClick={this.changeRoute}
 				onAllPostsClick={this.changeRoute}

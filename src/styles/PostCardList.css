@@ -1,7 +1,16 @@
 .pcl-container{
-	display: flex;
+	/*display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
+	margin: auto;*/
+	display: grid;
+	grid-gap: 0px;
+	grid-template-columns: auto;
+	/*justify-content: center;
+	margin: auto;
+	border: 1px solid black;
+	*/
+	justify-items: center;
 }
 
 .no-pets{
@@ -14,3 +23,34 @@
 	margin: auto;
 }
 
+/* viewport 4 : Mobile-landscape (and larger) */
+@media (min-width: 480px) {
+	.pcl-container {
+	grid-template-columns: auto;
+}
+
+}
+
+/* viewport 7 : Tablet-portrait (and larger) */
+@media (min-width: 768px) {
+	.pcl-container {
+	grid-template-columns: auto;
+}
+
+}
+
+/* viewport 9 : Table-landscape (and larger) */
+@media (min-width: 992px) {
+	.pcl-container {
+	grid-template-columns: auto;
+}
+ 
+}
+
+/* viewport 12 : Laptops (and larger)  */
+@media (min-width: 1200px) {
+	.pcl-container {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+}
