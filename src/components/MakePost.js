@@ -18,25 +18,59 @@ class MakePost extends Component{
 	onSaveChangesClick =()=>{
 
 		let {breed,image,description} = this.state;
+		if(breed.length < 1){
+			alert('breed cannot be blank')
+		}
 
-		// make a fetch here 
-		fetch('http://localhost:4000/addpet',{
-			method:'post',
-			headers:{'Content-Type':'application/json'},
-			body:JSON.stringify({
-				breed,
-				image,
-				description,
-				reservation_id:null
+		if(image.length < 10){
+			this.setState({image:'https://www.westernheights.k12.ok.us/wp-content/uploads/2020/01/No-Photo-Available.jpg'})
+		}
+
+		if(description.length < 10){
+			alert('description should have at least 10 characters');
+		}
+		else{
+
+
+			// make a fetch here 
+			fetch('http://localhost:4000/addpet',{
+				method:'post',
+				headers:{'Content-Type':'application/json'},
+				body:JSON.stringify({
+					breed,
+					image,
+					description,
+					reservation_id:null
+				})
 			})
-		})
-		.then(res => res.json())
-		.then(pet =>{
-			alert('Success!Pet have been added')
-			this.props.onSaveChangesClick('allposts')
-		})
-		.catch(err => alert('Something went wrong :('))
-		// change route
+			.then(res => res.json())
+			.then(pet =>{
+				alert('Success!Pet have been added')
+				this.props.onSaveChangesClick('allposts')
+			})
+			.catch(err => alert('Something went wrong :('))
+			// change route
+
+		}
+
+		// // make a fetch here 
+		// fetch('http://localhost:4000/addpet',{
+		// 	method:'post',
+		// 	headers:{'Content-Type':'application/json'},
+		// 	body:JSON.stringify({
+		// 		breed,
+		// 		image,
+		// 		description,
+		// 		reservation_id:null
+		// 	})
+		// })
+		// .then(res => res.json())
+		// .then(pet =>{
+		// 	alert('Success!Pet have been added')
+		// 	this.props.onSaveChangesClick('allposts')
+		// })
+		// .catch(err => alert('Something went wrong :('))
+		// // change route
 
 		
 	}

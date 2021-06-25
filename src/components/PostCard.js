@@ -9,7 +9,7 @@ function PostCard (props){
 		component =(
 			<div className='shadow-5 pc-container'>
 				
-				<img className='pc-img'src='https://i.pinimg.com/originals/3c/5a/13/3c5a137ef8d6362598ff1c21b3dad2ab.jpg' alt='pet' />
+				<img className='pc-img'src={props.post.image} alt='pet' />
 				
 				<div className='pc-items-container'>
 					<h1 className='pc-breed'>{props.post.breed}</h1>
@@ -24,7 +24,7 @@ function PostCard (props){
 		component =(
 			<div className='shadow-5 pc-container'>
 				
-				<img className='pc-img'src='https://i.pinimg.com/originals/3c/5a/13/3c5a137ef8d6362598ff1c21b3dad2ab.jpg' alt='pet' />
+				<img className='pc-img'src={props.post.image} alt='pet' />
 				
 				<div className='pc-items-container'>
 					<h1 className='pc-breed'>{props.post.breed}</h1>
@@ -38,7 +38,7 @@ function PostCard (props){
 		component =(
 			<div className='shadow-5 pc-container'>
 				
-				<img className='pc-img'src='https://i.pinimg.com/originals/3c/5a/13/3c5a137ef8d6362598ff1c21b3dad2ab.jpg' alt='pet' />
+				<img className='pc-img'src={props.post.image} alt='pet' />
 				
 				<div className='pc-items-container'>
 					<h1 className='pc-breed'>{props.post.breed}</h1>
