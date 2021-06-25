@@ -72,7 +72,7 @@ class SignUpForm extends React.Component {
 
 		}
 		// console.log( name, email, password, confirmPassword );
-		console.log('hello');
+		
 		// this.props.onRouteChange('home');
 	}
 
