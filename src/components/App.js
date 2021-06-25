@@ -3,6 +3,7 @@ import PostCardList from './PostCardList';
 import EditPost from './EditPost';
 import MakePost from './MakePost';
 import Navbar from './NavBar';
+import HomePage from './HomePage';
 import SignInForm from './SignInForm';
 import SignUpForm from './SignUpForm';
 
@@ -232,7 +233,7 @@ class App extends Component{
 			default:
 			component=(
 				<div>
-					<h1>Home</h1>
+					<HomePage />
 				</div>
 			);
 		}
